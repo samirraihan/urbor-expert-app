@@ -1,0 +1,470 @@
+/* Define custom text color classes */
+.primary-bg-color {
+    background-color: #008000 !important;
+    color: white !important;
+}
+
+.primary-text-color {
+    color: #008000 !important;
+}
+
+.text-primary {
+    color: #007bff !important;
+}
+
+.text-secondary {
+    color: #6c757d !important;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+.text-warning {
+    color: #ffc107 !important;
+}
+
+.text-info {
+    color: #17a2b8 !important;
+}
+
+.text-light {
+    color: #f8f9fa !important;
+}
+
+.text-dark {
+    color: #343a40 !important;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.custom-badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 10px;
+
+    /* Customize colors */
+    color: #fff;
+    background-color: #007bff;
+    /* Bootstrap primary color */
+}
+
+.custom-badge-secondary {
+    background-color: #6c757d;
+    /* Bootstrap secondary color */
+}
+
+.custom-badge-success {
+    background-color: #28a745;
+    /* Bootstrap success color */
+}
+
+.custom-badge-danger {
+    background-color: #dc3545;
+    /* Bootstrap danger color */
+}
+
+.custom-badge-warning {
+    background-color: #ffc107;
+    /* Bootstrap warning color */
+}
+
+.custom-badge-info {
+    background-color: #17a2b8;
+    /* Bootstrap info color */
+}
+
+.radius10 {
+    border-radius: 10px;
+}
+
+.tabbar-icons .tabbar-label {
+    font-size: 12px !important;
+}
+
+.messagebar textarea {
+    background-color: #ecf1f5 !important;
+}
+
+.profile-image img {
+    border: 2px solid #008000 !important;
+}
+
+.small-profile-image img {
+    width: 60px;
+}
+
+.profile-name {
+    font-size: 18px;
+    margin-top: auto !important;
+}
+
+.navbar-inner {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+}
+
+.navlink1 {
+    width: 90% !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    padding: 10px !important;
+    box-shadow: none !important;
+}
+
+.navlink1 img {
+    width: 27% !important;
+    max-width: 100px;
+    height: auto !important;
+    border-radius: 0 !important;
+}
+
+.navlink2 {
+    width: 10% !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+}
+
+.auth-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-logo img {
+    width: 30%;
+    max-width: 200px;
+}
+
+.signin-image img,
+.signup-image img,
+.contact-image,
+.album-header .album-cover {
+    max-width: 400px;
+}
+
+.contact-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.arrow-back {
+    padding-left: 10px !important;
+}
+
+.page-onboarding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.page-onboarding img {
+    width: 50%;
+    height: auto;
+}
+
+.router-link-active,
+.router-link-exact-active {
+    box-shadow: -2px 0px 6px 0px rgba(115, 103, 240, 0.48), 2px 0px 6px 0px rgba(115, 103, 240, 0.48);
+}
+
+.icon-checkbox,
+.checkbox i {
+    width: 20px;
+    height: 20px;
+}
+
+label.item-checkbox input[type='checkbox']:checked~.icon-checkbox,
+label.item-checkbox input[type='checkbox']:checked~* .icon-checkbox,
+.checkbox input[type='checkbox']:checked~i,
+label.item-checkbox input[type='checkbox']:indeterminate~.icon-checkbox,
+label.item-checkbox input[type='checkbox']:indeterminate~* .icon-checkbox,
+.checkbox input[type='checkbox']:indeterminate~i {
+    border-color: greenyellow;
+    background-color: #008000;
+}
+
+/* icon-checkbox after */
+.icon-checkbox:after {
+    content: 'checkbox_ios';
+    position: absolute;
+    display: none;
+}
+
+.icon-checkbox:after,
+.checkbox i:after {
+    top: -6px;
+    left: 0px;
+}
+
+.button:disabled {
+    opacity: 0.5;
+}
+
+.Vue-Toastification__toast-body {
+    font-size: 15px;
+    flex: none;
+}
+
+.select2-container {
+    width: 100% !important;
+}
+
+.select2-container .select2-selection--single {
+    height: 44px !important;
+    background-color: #ecf1f5;
+    border: none !important;
+    border-radius: 10px !important;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: #008000 !important;
+    color: #fff !important;
+}
+
+.select2-container.select2-container--default.select2-container--open {
+    z-index: 9999 !important;
+}
+
+.select2-container--default .select2-results__option--selected {
+    background-color: #008000 !important;
+    color: #fff !important;
+}
+
+.select2-dropdown {
+    background-color: #ecf1f5 !important;
+    border-radius: 10px !important;
+    width: 28% !important;
+}
+
+.select2-results__option {
+    padding: 10px !important;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    border: 1px solid #008000 !important;
+}
+
+.select2-search--dropdown .select2-search__field {
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 10px !important;
+    right: 5px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    padding-top: 10px;
+    color: #1e2b47;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+select {
+    background-color: #ecf1f5;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    height: 44px;
+    color: #1e2b47;
+    font-weight: 500;
+    margin-bottom: 20px;
+    font-size: 15px;
+    padding: 0 0 0 15px;
+}
+
+select option {
+    background-color: #ecf1f5;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    height: 44px;
+    color: #1e2b47;
+    font-weight: 500;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.custom-bottom-nav {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    color: #fff !important;
+    text-align: center !important;
+}
+
+.custom-bottom-nav-inner {
+    position: relative !important;
+    top: 0 !important;
+}
+
+.custom-message-bar {
+    position: fixed !important;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.messagebar {
+    top: auto !important;
+}
+
+.messages-content,
+.messages {
+    max-height: 86% !important;
+}
+
+.image-preview {
+    margin-top: 10px;
+    position: relative;
+}
+
+.selected-image-preview {
+    max-width: 100%;
+    max-height: 200px;
+    margin-bottom: 10px;
+}
+
+.remove-selected-image-icon {
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
+    color: red;
+    font-size: 24px;
+}
+
+.border-danger {
+    border: 1px solid #dc3545 !important;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.album-title {
+    white-space: unset !important;
+}
+
+.mt-10 {
+    margin-top: 10px !important;
+}
+.mt-100 {
+    margin-top: 100px !important;
+}
+
+.term-condition {
+    padding-bottom: 20px !important;
+}
+
+.signup-have-account {
+    padding-top: 20px !important;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.side-by-side {
+    display: inline-block;
+    padding: 15px;
+    text-align: right;
+}
+
+.w-50 {
+    width: 50% !important;
+}
+
+/* switch button */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.checkbox:checked+.slider {
+    background-color: #008000;
+}
+
+.checkbox:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+.small-icon {
+    font-size: 14px;
+}
+
+.progressbar span {
+    background-color: #008000 !important;
+}
+
+.progressbar, .progressbar-infinite {
+    border-radius: 4px;
+}
+
+.progressbar-infinite, .progressbar {
+    margin: 10px 0;
+}
+
+.profile-header {
+    margin: 10px 0 10px;
+}
