@@ -73,13 +73,7 @@ export const useAuthStore = defineStore('auth', {
                     this.isAuthenticated = false;
                     this.user = null;
                     this.token = null;
-                    localStorage.removeItem("AUTH_STATUS");
-                    localStorage.removeItem("AUTH_TOKEN");
-                    localStorage.removeItem("AUTH_USER");
-                    localStorage.removeItem("AUTH_USER_PHONE_VERIFIED");
-                    localStorage.removeItem("AUTH_NEXT_LOGOUT_DATETIME");
-                    localStorage.removeItem("AUTH_EXPIRE_ON_BROWSER_CLOSE");
-                    localStorage.removeItem("AUTH_LOGIN_DATETIME");
+                    localStorage.clear();
                     navigateTo('/auth');
                     return true;
                 }

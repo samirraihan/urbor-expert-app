@@ -5,7 +5,7 @@
                 <i class="icon f7-icons">house</i>
                 <span class="tabbar-label">হোম</span>
             </NuxtLink>
-            <NuxtLink to="/farmers" class="tab-link">
+            <NuxtLink to="/crop_issues" class="tab-link">
                 <i class="icon f7-icons">ant_fill</i>
                 <span class="tabbar-label">সমস্যা</span>
             </NuxtLink>

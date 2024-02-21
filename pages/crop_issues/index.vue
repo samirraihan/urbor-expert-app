@@ -2,8 +2,8 @@
     <main>
         <div class="page">
             <div class="page-content">
-                <h1>রোগের সমাধান</h1>
-                <h3>ফসলের রোগ খুজুন</h3>
+                <h1>নতুন সমস্যা সমূহ</h1>
+                <h3>ফসলের নতুন সমস্যা খুজুন</h3>
                 <form @submit.prevent="handleSearchSubmit">
                     <div class="grid grid-cols-2 grid-gap">
                         <select v-model="form.crop_type" @change="handleSelectChange" class="mb-0">
@@ -19,30 +19,28 @@
                             </option>
                         </select>
                     </div>
-                    <button type="submit" class="button button-fill color-dark primary-bg-color">সমাধান খুজুন</button>
+                    <button type="submit" class="button button-fill color-dark primary-bg-color">নতুন সমস্যা খুজুন</button>
                 </form>
                 <hr>
-                <h3>ফসলের রোগ ও পোকামাকড়ের তালিকা</h3>
+                <h3>ফসলের নতুন সমস্যা তালিকা</h3>
                 <div class="post-list">
                     <template v-if="isDataLoading">
-                        <li class="text-center"> {{ loadingText }} </li>
+                        <li> {{ loadingText }} </li>
                     </template>
-                    <template v-else-if="cropRemedyDatas.length !== 0 && !isDataLoading">
-                        <template v-for="cropRemedy in cropRemedyDatas" :key="cropRemedy.id">
-                            <div class="link post-horizontal" @click="handleRemedyDetails(cropRemedy.id)">
+                    <template v-else-if="cropNewIssuesDatas.length !== 0 && !isDataLoading">
+                        <template v-for="cropNewIssue in cropNewIssuesDatas" :key="cropNewIssue.id">
+                            <div class="link post-horizontal" @click="handleRemedyDetails(cropNewIssue.id)">
                                 <div class="infos">
-                                    <div class="post-category text-success"><b>{{ cropRemedy.crop.title }}</b></div>
-                                    <div class="post-title">{{ cropRemedy.title }}</div>
-                                    <div :class="cropRemedy.verification_status === 'verified' ? 'text-success' : 'text-warning'" class="post-date">
-                                        {{ cropRemedy.verification_status === 'verified' ? 'যাচাইকৃত তথ্য' : 'যাচাইকৃত তথ্য নয়' }}
-                                    </div>
+                                    <div class="post-category text-success"><b>{{ cropNewIssue.title }}</b></div>
+                                    <div class="post-title">{{ cropNewIssue.title }}</div>
+                                    <div class="text-info post-date">সমাধানের অপেক্ষায়</div>
                                 </div>
-                                <div class="post-image"><img :src="cropRemedy.image" :alt="cropRemedy.crop.title"></div>
+                                <div class="post-image"><img :src="cropNewIssue.image" :alt="cropNewIssue.title"></div>
                             </div>
                         </template>
                     </template>
                     <template v-else>
-                        <li class="text-center"> কোন তথ্য পাওয়া যায়নি! </li>
+                        <li> কোন তথ্য পাওয়া যায়নি! </li>
                     </template>
                 </div>
             </div>
@@ -56,8 +54,8 @@ definePageMeta({
     middleware: 'auth'
 });
 
-const pageTitle = ref("Crops Remedy");
-const currentApiUrl = ref("admin/");
+const pageTitle = ref("Crops New Issues");
+const currentApiUrl = ref("expert/");
 const router = useRouter();
 useHead({
     title: pageTitle.value + " | Urbor",
@@ -65,11 +63,11 @@ useHead({
 
 const { $toast } = useNuxtApp();
 const preloader = ref(false);
-const cropRemedyDatas = ref([]);
+const cropNewIssuesDatas = ref([]);
 const cropTypeDatas = ref([]);
 const crops = ref([]);
 const isDataLoading = ref(true);
-const loadingText = ref("লোড হচ্ছে...");
+const loadingText = ref("তথ্য অনুসন্ধান চলমান...");
 const noError = ref(false);
 
 const form = ref({
@@ -88,21 +86,22 @@ function resetFormData() {
     form.value.crop = "";
 }
 
-async function fetchData() {
+async function fetchNewIssues() {
     try {
-        const response = await useMyFetch(currentApiUrl.value + 'crop-remedy/fetch-data');
-        cropRemedyDatas.value = response.data.getData;
+        const response = await useMyFetch('crop-issue/new-crop-issues');
+        cropNewIssuesDatas.value = response.data.getData;
+        console.log(cropNewIssuesDatas.value);
         isDataLoading.value = false;
     } catch (error) {
         console.log(error);
     }
 }
 
-fetchData();
+fetchNewIssues();
 
 async function fetchCrops() {
     try {
-        const response = await useMyFetch(currentApiUrl.value + 'crop-type/fetch-data');
+        const response = await useMyFetch('admin/crop-type/fetch-data');
         cropTypeDatas.value = response.data.getData;
     } catch (error) {
         console.log(error);
@@ -161,7 +160,7 @@ async function handleSearchSubmit() {
 
         preloader.value = true;
         isDataLoading.value = true;
-        const endpoint = currentApiUrl.value + "crop-remedy/search";
+        const endpoint = "crop-issue/search";
 
         const response = await useMyFetch(endpoint, {
             method: "POST",
@@ -173,7 +172,7 @@ async function handleSearchSubmit() {
             isDataLoading.value = false;
             noError.value = false;
             resetFormData();
-            cropRemedyDatas.value = response.data.getData;
+            cropNewIssuesDatas.value = response.data.getData;
         } else {
             preloader.value = false;
             isDataLoading.value = false;
@@ -187,9 +186,9 @@ async function handleSearchSubmit() {
 }
 
 function handleRemedyDetails(id) {
-    const findCropRemedyById = cropRemedyDatas.value.find((item) => item.id === id);
-    localStorage.setItem('cropRemedy', JSON.stringify(findCropRemedyById));
-    router.push(`/crop_remedy/${id}`);
+    const findcropNewIssueById = cropNewIssuesDatas.value.find((item) => item.id === id);
+    localStorage.setItem('cropNewIssue', JSON.stringify(findcropNewIssueById));
+    router.push(`/crop_issues/${id}`);
 }
 </script>
 

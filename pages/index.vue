@@ -19,7 +19,7 @@
                         <img src="/img/images/suggestion-list.png" alt="">
                         <div class="album-details">
                             <div class="album-title">Total Solution Given</div>
-                            <div class="album-author">{{ totalFarmers }}</div>
+                            <div class="album-author">{{ totalSolutionGiven }}</div>
                         </div>
                     </NuxtLink>
                 </div>
@@ -27,11 +27,11 @@
                 <hr>
                 <br>
                 <div class="grid grid-cols-1 grid-gap">
-                    <NuxtLink to="/" class="category-item link">
+                    <NuxtLink to="/crop_issues" class="category-item link">
                         <img src="/img/categories/iot.jpg" alt="">
                         <div class="category-name">নতুন সমস্যা সমূহ</div>
                     </NuxtLink>
-                    <NuxtLink to="/" class="category-item link">
+                    <NuxtLink to="/prescribed_solutions" class="category-item link">
                         <img src="/img/categories/protection.jpg" alt="">
                         <div class="category-name">পূর্বের দেয়া পরামর্শ সমূহ</div>
                     </NuxtLink>
@@ -52,49 +52,22 @@ definePageMeta({
     middleware: 'auth'
 });
 
-const currentMonthFarmersCount = ref('');
-const currentMonthOrdersAmountCount = ref('');
+const totalSolutionGiven = ref('');
 
-async function monthlyFarmerEnollment() {
+async function totalSolutionCount() {
     try {
-        const response = await useMyFetch(
-            "agent/monthly-farmer-enrollment",
-        );
-        if (response) {
-            currentMonthFarmersCount.value = response.data.getData;
-        }
-    } catch (error) { }
+        const response = await useMyFetch('expert/total-expert-solutions');
+        totalSolutionGiven.value = response.data.getData;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-monthlyFarmerEnollment();
+totalSolutionCount();
 
-async function monthlyOrder() {
-    try {
-        const response = await useMyFetch(
-            "admin/order/monthly-order-data",
-        );
-        if (response) {
-            currentMonthOrdersAmountCount.value = response.data.getData;
-        }
-    } catch (error) { }
-}
-
-monthlyOrder();
-
-const userName = computed(() => authStore.isAuthenticated ? authStore.user.name : 'কৃষকের নাম');
-const userID = computed(() => authStore.isAuthenticated ? authStore.user.uuid : 'FID-000000');
-const userPhone = computed(() => authStore.isAuthenticated ? authStore.user.phone : '000000000000000');
-
-const totalFarmers = computed(() => authStore.isAuthenticated ? authStore.user.agent_details.farmer_enrollment : '0');
-const totalOrders = computed(() => authStore.isAuthenticated ? authStore.user.agent_details.total_order : '0');
-
-const totalOrderAmount = computed(() => authStore.isAuthenticated ? authStore.user.agent_details.total_order_amount : '0');
-
-const targetFarmerEnrollment = computed(() => authStore.isAuthenticated ? authStore.user.agent_details.target_farmer_enrollment : '0');
-const targetOrderAmount = computed(() => authStore.isAuthenticated ? authStore.user.agent_details.target_order_amount : '0');
-
-const farmerProgressPercentage = computed(() => (currentMonthFarmersCount.value / targetFarmerEnrollment.value) * 100);
-const orderAmountProgressPercentage = computed(() => (currentMonthOrdersAmountCount.value / targetOrderAmount.value) * 100);
+const userName = computed(() => authStore.isAuthenticated ? authStore.user.name : 'নাম');
+const userID = computed(() => authStore.isAuthenticated ? authStore.user.uuid : 'EID-000000');
+const userPhone = computed(() => authStore.isAuthenticated ? authStore.user.phone : '--');
 </script>
 
 <style scoped></style>
