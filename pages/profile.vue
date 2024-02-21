@@ -45,70 +45,46 @@
         </div>
 
         <form v-if="showProfileChange" @submit.prevent="handleProfileUpdate">
-          <label>ঠিকানা</label>
+          <div class="light-gray-title">ঠিকানা</div>
           <textarea type="text" v-model="profileForm.address" placeholder="ঠিকানা" readonly />
-          <label>ছবি</label>
-          <input type="text" v-model="profileForm.photo" placeholder="ছবি আপলোড">
-          <label>স্বাক্ষর</label>
-          <input type="text" v-model="profileForm.signature" placeholder="স্বাক্ষর আপলোড">
-          <div class="grid grid-cols-2 grid-gap">
-            <div>
-              <label>ব্যাংকের নাম</label>
-              <input type="text" v-model="profileForm.bank_name" placeholder="ব্যাংকের নাম">
-            </div>
-            <div>
-              <label>ব্যাংকের শাখা</label>
-              <input type="text" v-model="profileForm.bank_branch" placeholder="ব্যাংকের শাখা">
-            </div>
-            <div>
-              <label>ব্যাংক হিসাব নাম</label>
-              <input type="text" v-model="profileForm.bank_account_name" placeholder="ব্যাংক হিসাব নাম">
-            </div>
-            <div>
-              <label>ব্যাংক একাউন্ট নম্বর</label>
-              <input type="text" v-model="profileForm.bank_account_number" placeholder="ব্যাংক একাউন্ট নম্বর">
-            </div>
-            <div>
-              <label>পূর্ববর্তী কাজের পদবী</label>
-              <input type="text" v-model="profileForm.last_working_experience" placeholder="পূর্ববর্তী কাজের পদবী">
-            </div>
-            <div>
-              <label>অভিজ্ঞতা সার্টিফিকেট</label>
-              <input type="text" v-model="profileForm.last_working_experience_certificate"
-                placeholder="অভিজ্ঞতা সার্টিফিকেট">
-            </div>
-            <div>
-              <label>অভিজ্ঞতা বছর</label>
-              <input type="text" v-model="profileForm.last_working_experience_year" placeholder="অভিজ্ঞতা বছর">
-            </div>
-            <div>
-              <label>আগের কোম্পানি নাম</label>
-              <input type="text" v-model="profileForm.last_working_company_name" placeholder="আগের কোম্পানি নাম">
-            </div>
-            <div>
-              <label>কোম্পানির ঠিকানা</label>
-              <input type="text" v-model="profileForm.last_working_company_address" placeholder="কোম্পানির ঠিকানা">
-            </div>
-            <div>
-              <label>কোম্পানির ফোন নম্বর</label>
-              <input type="text" v-model="profileForm.last_working_company_contact" placeholder="কোম্পানির ফোন নম্বর">
-            </div>
+          <div class="light-gray-title">ছবি</div>
+          <div class="create-post-cover" v-if="!imageView">
+            <input type="file" name="profileForm.photo" @click="handleImage">
+            <i class="icon f7-icons">photo</i>
+            <div>ছবি আপলোড</div>
+          </div>
+          <div class="create-post-cover" v-else>
+            <img :src="profileForm.photo" alt="ছবি" @click="handleImage" />
+          </div>
+          <div class="light-gray-title">স্বাক্ষর</div>
+          <div class="create-post-cover">
+            <input type="file" name="profileForm.signature">
+            <i class="icon f7-icons">photo</i>
+            <div>স্বাক্ষর আপলোড</div>
+          </div>
+          <div class="light-gray-title">আইডি / ভিজিটং কার্ড নং</div>
+          <input type="text" v-model="profileForm.id_card_number" placeholder="আইডি / ভিজিটং কার্ড নং">
+          <div class="light-gray-title">আইডি / ভিজিটং কার্ডের ছবি আপলোড</div>
+          <div class="create-post-cover">
+            <input type="file" name="profileForm.id_card_photo">
+            <i class="icon f7-icons">photo</i>
+            <div>আইডি / ভিজিটং কার্ডের ছবি আপলোড</div>
           </div>
           <button type="submit" class="button button-fill button-round color-dark primary-bg-color">প্রোফাইল আপডেট
             করুন</button>
         </form>
         <form v-if="showPinChange" @submit.prevent="handlePasswordChange">
-          <label>পিন পরিবর্তন</label>
+          <div class="light-gray-title">পিন পরিবর্তন</div>
           <input type="password" v-model="form.old_password" placeholder="বর্তমান পিন" @input="checkPasswordInput"
             inputmode="numeric" minlength="4" maxlength="4">
           <div class="grid grid-cols-2 grid-gap no-margin">
             <div>
-              <label>নতুন পিন</label>
+              <div class="light-gray-title">নতুন পিন</div>
               <input type="password" v-model="form.password" placeholder="নতুন পিন" @input="checkPasswordInput"
                 inputmode="numeric" minlength="4" maxlength="4">
             </div>
             <div>
-              <label>পুনরায় নতুন পিন</label>
+              <div class="light-gray-title">পুনরায় নতুন পিন</div>
               <input type="password" v-model="form.password_confirmation" placeholder="পুনরায় নতুন পিন"
                 @input="checkPasswordInput" inputmode="numeric" minlength="4" maxlength="4">
             </div>
@@ -136,8 +112,8 @@ useHead({
   title: pageTitle.value + " | Urbor",
 });
 
-const userName = computed(() => authStore.isAuthenticated ? authStore.user.name : 'কৃষকের নাম');
-const userID = computed(() => authStore.isAuthenticated ? authStore.user.uuid : 'FID-000000');
+const userName = computed(() => authStore.isAuthenticated ? authStore.user.name : 'নাম');
+const userID = computed(() => authStore.isAuthenticated ? authStore.user.uuid : 'EID-000000');
 const userPhone = computed(() => authStore.isAuthenticated ? authStore.user.phone : '000000000000000');
 
 const showProfileChange = ref(false);
@@ -145,6 +121,7 @@ const showPinChange = ref(false);
 const preloader = ref(false);
 const noError = ref(false);
 const currentFormData = ref({});
+const imageView = ref(false);
 
 const form = ref({
   id: authStore.user.id,
@@ -158,17 +135,9 @@ const profileForm = ref({
   address: authStore.user.agent_details.address,
   photo: authStore.user.agent_details.photo,
   signature: authStore.user.agent_details.signature,
-  bank_name: authStore.user.agent_details.bank_name,
-  bank_branch: authStore.user.agent_details.bank_branch,
-  bank_account_name: authStore.user.agent_details.bank_account_name,
-  bank_account_number: authStore.user.agent_details.bank_account_number,
-  last_working_experience: authStore.user.agent_details.last_working_experience,
-  last_working_experience_certificate: authStore.user.agent_details.last_working_experience_certificate,
-  last_working_experience_year: authStore.user.agent_details.last_working_experience_year,
-  last_working_company_name: authStore.user.agent_details.last_working_company_name,
-  last_working_company_address: authStore.user.agent_details.last_working_company_address,
-  last_working_company_contact: authStore.user.agent_details.last_working_company_contact,
-  user_type: 'Agent',
+  id_card_number: authStore.user.agent_details.id_card_number,
+  id_card_photo: authStore.user.agent_details.id_card_photo,
+  user_type: 'Expert',
 });
 currentFormData.value = { ...profileForm.value };
 
@@ -302,6 +271,10 @@ async function handleProfileUpdate() {
     console.log(error);
   }
 }
+
+const handleImage = () => {
+  imageView.value = !imageView.value;
+};
 </script>
 
 <style scoped></style>
